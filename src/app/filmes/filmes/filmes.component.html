@@ -1,0 +1,63 @@
+
+<div class="container  mb-3">
+  <div class="row">
+    <div class=" col-lg-8 bottomNome">
+      <input type="text" class="form-control"
+             placeholder="Nome do filme desejado" aria-label="Nome do filme desejado" [(ngModel)]="nome">
+    </div>
+    <div class=" col-md-auto bottomPesquisa">
+      <button type="button" class="btn btn-primary" (click) = "obterFilmePorNome(nome)">Pesquisar</button>
+    </div>
+    {{ ' ' }}
+    <div class="col col-lg-1">
+      <button type="button" class="btn btn-primary" (click) = "limparPesquisa()">Limpar</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="container" *ngIf="aparece">
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12 col-sm-8  mb-3">
+        <div class="row mb-3">
+          <div class="col-md-5">Movi {{ filmeTela.Title }}</div>
+          <div class="col-md-7">Ano do Filme: <span>
+
+            {{ filmeTela.Released}}</span></div>
+        </div >
+        <div >Descrição</div>
+        <div>
+          <p class="texteDescricao">
+            {{ filmeTela.Plot}}
+          </p>
+        </div>
+        <div class="mb-2">
+          Actor : <span>{{ filmeTela.Actors}}</span>
+        </div>
+        <div class="mb-3">
+          Review : <span>
+           <rating [(ngModel)]="ratings" [max]="averageRating"
+                   [readonly]="isReadonly">
+      </rating></span>
+          <div>
+            <button type="button" class="btn btn-primary">Favorito</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-4">
+        <div>
+          <img class="img-thumbnail " src="{{filmeTela.Poster}}"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="container" *ngIf="pesquisa">
+  <div class="card mb-3">
+    <h3>Nem um Filme encontrado</h3>
+  </div>
+</div>
